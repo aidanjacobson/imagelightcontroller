@@ -51,7 +51,6 @@ HTMLImageElement.prototype.waitForLoad = function() {
 
 var canvas, ctx;
 async function submit(url) {
-    if (imageUpload.files.length == 0) return;
     var i = new Image();
     i.src = url;
     await i.waitForLoad();
@@ -71,6 +70,7 @@ async function submit(url) {
 }
 
 function submitUpload() {
+    if (imageUpload.files.length == 0) return;
     var file = imageUpload.files[0];
     var url = URL.createObjectURL(file);
     submit(url);
