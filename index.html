@@ -5,7 +5,7 @@
         <script src="script.js"></script>
     </head>
     <body>
-        <canvas id="canvas"></canvas><br>
-        <input type="file" id="imageUpload" onchange="submit()" />
+        <canvas id="canvas" style="border: 1px solid;" ondrop="doDrop(event)" ondragover="dragOverHandler(event)" ></canvas><br>
+        <input type="file" id="imageUpload" onchange="submitUpload()" />
     </body>
 </html>

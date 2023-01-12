@@ -50,11 +50,9 @@ HTMLImageElement.prototype.waitForLoad = function() {
 }
 
 var canvas, ctx;
-async function submit() {
+async function submit(url) {
     if (imageUpload.files.length == 0) return;
     var i = new Image();
-    var file = imageUpload.files[0];
-    var url = URL.createObjectURL(file);
     i.src = url;
     await i.waitForLoad();
     canvas = document.getElementById("canvas");
@@ -72,6 +70,12 @@ async function submit() {
     submitServiceCall(average);
 }
 
+function submitUpload() {
+    var file = imageUpload.files[0];
+    var url = URL.createObjectURL(file);
+    submit(url);
+}
+
 function submitServiceCall(rgb) {
     var url = `https://aidanjacobson.duckdns.org:8123/api/services/light/turn_on`;
     var xhr = new XMLHttpRequest();
@@ -83,4 +87,16 @@ function submitServiceCall(rgb) {
         rgb_color: rgb
     }
     xhr.send(JSON.stringify(data));
+}
+
+function dragOverHandler(ev) {
+    ev.preventDefault();
+  }
+
+function doDrop(e) {
+    e.preventDefault();
+    var file = e.dataTransfer.files[0];
+    var url = URL.createObjectURL(file);
+    console.log(file, url);
+    submit(url);
 }
