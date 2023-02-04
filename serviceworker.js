@@ -10,3 +10,8 @@ onfetch = (async function(event) {
         client.postMessage({file, action:"load-img"});
     //}
 })
+console.log("hi");
+
+function hi() {
+    console.log("hi");
+}
