@@ -110,4 +110,11 @@ function doDrop(e) {
 if ('serviceWorker' in navigator) {
     console.log('👍', 'navigator.serviceWorker is supported');
     navigator.serviceWorker.register('serviceworker.js');
-  }
+}
+
+navigator.serviceWorker.addEventListener("message", function(e) {
+    if (e.data.action == "load-img") {
+        var url = URL.createObjectURL(e.data.file);
+        submit(url);
+    }
+})
