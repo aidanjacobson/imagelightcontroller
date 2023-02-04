@@ -106,10 +106,10 @@ function doDrop(e) {
     console.log(file, url);
     submit(url);
 }
-
+var registration;
 if ('serviceWorker' in navigator) {
     console.log('👍', 'navigator.serviceWorker is supported');
-    navigator.serviceWorker.register('serviceworker.js');
+    registration = navigator.serviceWorker.register('serviceworker.js');
 }
 
 navigator.serviceWorker.addEventListener("message", function(e) {
