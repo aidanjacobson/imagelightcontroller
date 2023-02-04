@@ -1,6 +1,7 @@
 var fd;
 onfetch = (async function(event) {
-    if ((new URL(event.request.url)).search != "?sharing") return;
+    console.log("fetch");
+    if (event.request.url.indexOf("upload-image") == -1) return;
     //if (event.request.method === "POST") {
         fd = event.request.formData();
         const file = fd.get("images");
