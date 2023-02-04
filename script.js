@@ -29,9 +29,9 @@ window.onload = function() {
     }
     if (!failed && access_token != "") {
         if (location.hash != "" && location.hash != "#") {
-            entityId = prompt("Enter the ID of entity to control", "light.aidan_s_room_lights");
-        } else {
             entityId = location.hash.substring(1);
+        } else {
+            entityId = prompt("Enter the ID of entity to control", "light.aidan_s_room_lights");
         }
     }
 }
