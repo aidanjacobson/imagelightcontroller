@@ -1,4 +1,4 @@
-self.addEventListener("fetch", async function(event) {
+onfetch = (async function(event) {
     if (event.request.url.indexOf("lighthandle")) return;
     //if (event.request.method === "POST") {
         var fd = event.request.formData();
