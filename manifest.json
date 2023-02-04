@@ -1,0 +1,18 @@
+{
+    "name": "Image Light Controller",
+    "start_url": "https://aidanjacobson.github.io/imagelightcontroller/",
+    "display": "standalone",
+    "share_target": {
+        "action": "https://aidanjacobson.github.io/imagelightcontroller/#light.aidan_s_room_lights",
+        "method": "POST",
+        "enctype": "multipart/form-data",
+        "params": {
+            "files": [
+                {
+                    "name": "images",
+                    "accept": ["image/*"]
+                }
+            ]
+        }
+    }
+}

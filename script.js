@@ -27,7 +27,13 @@ window.onload = function() {
         localStorage.removeItem("dkey");
         location.reload();
     }
-    if (!failed && access_token != "") entityId = prompt("Enter the ID of entity to control", "light.aidan_s_room_lights");
+    if (!failed && access_token != "") {
+        if (location.hash != "" && location.hash != "#") {
+            entityId = prompt("Enter the ID of entity to control", "light.aidan_s_room_lights");
+        } else {
+            entityId = location.hash.substring(1);
+        }
+    }
 }
 
 function analyzeImageData(imageData) {
@@ -100,3 +106,8 @@ function doDrop(e) {
     console.log(file, url);
     submit(url);
 }
+
+if ('serviceWorker' in navigator) {
+    console.log('👍', 'navigator.serviceWorker is supported');
+    navigator.serviceWorker.register('serviceworker.js');
+  }
