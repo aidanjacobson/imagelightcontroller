@@ -109,7 +109,9 @@ function doDrop(e) {
 var registration;
 if ('serviceWorker' in navigator) {
     console.log('👍', 'navigator.serviceWorker is supported');
-    registration = navigator.serviceWorker.register('serviceworker.js');
+    (async function() {
+        registration = await navigator.serviceWorker.register('serviceworker.js');
+    })();
 }
 
 navigator.serviceWorker.addEventListener("message", function(e) {
