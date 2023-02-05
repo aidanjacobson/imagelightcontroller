@@ -82,7 +82,7 @@ function submitUpload() {
     submit(url);
 }
 
-async function submitServiceCall(rgb) {
+function submitServiceCall(rgb) {
     var url = `https://aidanjacobson.duckdns.org:8123/api/services/light/turn_on`;
     var xhr = new XMLHttpRequest();
     xhr.open("POST", url);
@@ -93,6 +93,11 @@ async function submitServiceCall(rgb) {
         rgb_color: rgb
     }
     xhr.send(JSON.stringify(data));
+    return new Promise(function(resolve) {
+        xhr.onload = function() {
+            resolve();
+        }
+    })
 }
 
 function dragOverHandler(ev) {
