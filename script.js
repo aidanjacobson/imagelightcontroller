@@ -118,6 +118,6 @@ navigator.serviceWorker.addEventListener("message", async function(e) {
     if (e.data.action == "load-img") {
         var url = URL.createObjectURL(e.data.file);
         await submit(url);
-        window.close();
+        setTimeout(()=>window.close(), 500);
     }
 })
