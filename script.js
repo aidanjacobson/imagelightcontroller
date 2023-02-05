@@ -72,7 +72,7 @@ async function submit(url) {
         canvas.requestFullscreen();
     }
     canvas.requestFullscreen();
-    submitServiceCall(average);
+    await submitServiceCall(average);
 }
 
 function submitUpload() {
@@ -82,7 +82,7 @@ function submitUpload() {
     submit(url);
 }
 
-function submitServiceCall(rgb) {
+async function submitServiceCall(rgb) {
     var url = `https://aidanjacobson.duckdns.org:8123/api/services/light/turn_on`;
     var xhr = new XMLHttpRequest();
     xhr.open("POST", url);
@@ -114,9 +114,10 @@ if ('serviceWorker' in navigator) {
     })();
 }
 
-navigator.serviceWorker.addEventListener("message", function(e) {
+navigator.serviceWorker.addEventListener("message", async function(e) {
     if (e.data.action == "load-img") {
         var url = URL.createObjectURL(e.data.file);
-        submit(url);
+        await submit(url);
+        window.close();
     }
 })
