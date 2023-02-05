@@ -2,6 +2,7 @@ var fd;
 onfetch = (async function(event) {
     console.log("fetch");
     if (event.request.url.indexOf("upload-image") == -1) return;
+    console.log("upload img");
     //if (event.request.method === "POST") {
         fd = await event.request.formData();
         const file = fd.get("images");
