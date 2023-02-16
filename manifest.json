@@ -3,7 +3,7 @@
     "start_url": "https://aidanjacobson.github.io/imagelightcontroller/",
     "display": "standalone",
     "share_target": {
-        "action": "upload-image",
+        "action": "index.html",
         "method": "POST",
         "enctype": "multipart/form-data",
         "params": {
