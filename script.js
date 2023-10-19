@@ -84,8 +84,12 @@ function submitUpload() {
 
 function submitServiceCall(rgb) {
     var url = `https://aidanjacobson.duckdns.org:8123/api/services/light/turn_on`;
+    if (localStorage.getItem("local_weblight") == "true") {
+        url = `https://homeassistant.local:8123/api/services/light/turn_on`;
+    }
     var xhr = new XMLHttpRequest();
     xhr.open("POST", url);
+    xhr.crossOrigin = 'anonymous';
     xhr.setRequestHeader("Authorization", `Bearer ${access_token}`);
     xhr.setRequestHeader("Content-Type", "application/json");
     var data = {
@@ -113,7 +117,6 @@ function doDrop(e) {
 }
 var registration;
 if ('serviceWorker' in navigator) {
-    console.log('👍', 'navigator.serviceWorker is supported');
     (async function() {
         registration = await navigator.serviceWorker.register('serviceworker.js');
     })();
