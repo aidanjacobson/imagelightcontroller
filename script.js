@@ -156,11 +156,15 @@ function lightControlURL(url) {
     return new Promise((resolve, reject) => {
         var serviceURL = `http://aidanjacobson.duckdns.org:9168/setAll/url(${encodeURIComponent(url)})`;
         var x = new XMLHttpRequest();
-        x.open("GET", serviceURL);
+        x.open("GET", proxify(serviceURL));
         x.onload = function() {
             resolve();
         }
         x.send();
     })
     //console.log(url);
+}
+
+function proxify(url) {
+    return `https://aidanjacobson.duckdns.org:42068/proxy/?url=${encodeURIComponent(url)}`;
 }
