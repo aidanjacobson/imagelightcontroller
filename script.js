@@ -122,10 +122,38 @@ if ('serviceWorker' in navigator) {
     })();
 }
 
+// navigator.serviceWorker.addEventListener("message", async function(e) {
+//     if (e.data.action == "load-img") {
+//         var url = URL.createObjectURL(e.data.file);
+//         await submit(url);
+//         setTimeout(()=>window.close(), 500);
+//     }
+// })
+
 navigator.serviceWorker.addEventListener("message", async function(e) {
     if (e.data.action == "load-img") {
-        var url = URL.createObjectURL(e.data.file);
-        await submit(url);
+        // var url = URL.createObjectURL(e.data.file);
+        // await submit(url);
+        var reader = new FileReader();
+        reader.onload = function() {
+            //await submit(reader.result);
+            var result = reader.result;
+            await lightControlURL(result);
+        }
+        reader.readAsDataURL(e.data.file);
         setTimeout(()=>window.close(), 500);
     }
 })
+
+function lightControlURL(url) {
+    // return new Promise((resolve, reject) => {
+    //     var serviceURL = `http://aidanjacobson.duckdns.org:9168/setAll/url(${encodeURIComponent(url)})`;
+    //     var x = new XMLHttpRequest();
+    //     x.open("GET", url);
+    //     x.onload = function() {
+    //         resolve();
+    //     }
+    //     x.send();
+    // })
+    console.log(url);
+}
