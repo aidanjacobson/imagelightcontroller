@@ -111,9 +111,16 @@ function dragOverHandler(ev) {
 function doDrop(e) {
     e.preventDefault();
     var file = e.dataTransfer.files[0];
-    var url = URL.createObjectURL(file);
-    console.log(file, url);
-    submit(url);
+    //var url = URL.createObjectURL(file);
+    //console.log(file, url);
+    //submit(url);
+    var reader = new FileReader();
+    reader.onload = function() {
+        //await submit(reader.result);
+        var result = reader.result;
+        lightControlURL(result);
+    }
+    reader.readAsDataURL(file);
 }
 var registration;
 if ('serviceWorker' in navigator) {
@@ -146,14 +153,14 @@ navigator.serviceWorker.addEventListener("message", async function(e) {
 })
 
 function lightControlURL(url) {
-    // return new Promise((resolve, reject) => {
-    //     var serviceURL = `http://aidanjacobson.duckdns.org:9168/setAll/url(${encodeURIComponent(url)})`;
-    //     var x = new XMLHttpRequest();
-    //     x.open("GET", url);
-    //     x.onload = function() {
-    //         resolve();
-    //     }
-    //     x.send();
-    // })
-    console.log(url);
+    return new Promise((resolve, reject) => {
+        var serviceURL = `http://aidanjacobson.duckdns.org:9168/setAll/url(${encodeURIComponent(url)})`;
+        var x = new XMLHttpRequest();
+        x.open("GET", serviceURL);
+        x.onload = function() {
+            resolve();
+        }
+        x.send();
+    })
+    //console.log(url);
 }
