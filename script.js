@@ -138,7 +138,7 @@ navigator.serviceWorker.addEventListener("message", async function(e) {
         reader.onload = function() {
             //await submit(reader.result);
             var result = reader.result;
-            await lightControlURL(result);
+            lightControlURL(result);
         }
         reader.readAsDataURL(e.data.file);
         setTimeout(()=>window.close(), 500);
